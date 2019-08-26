@@ -17,10 +17,12 @@ namespace ExercicioFinalWebApi.Models
         ContextDB dB = new ContextDB();
 
         private ValidFields typeField;
+        private ValidEstadoCivil estadoCivil;
 
         public CustomValidFields(ValidFields type)
         {
             typeField = type;
+
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -121,9 +123,10 @@ namespace ExercicioFinalWebApi.Models
 
                     case ValidFields.ValidaEstadoCivil:
                         {
-                            Cliente client = dB.Clientes.FirstOrDefault(x => x.EstadoCivil == value.ToString());
+                            Cliente client = dB.Clientes.FirstOrDefault(x => x.EstadoCivil.ToString() == value.ToString());
 
                             if (value.ToString() == "Solteiro" || value.ToString() == "Casado" || value.ToString() == "Divorciado" || value.ToString() == "Viúvo")
+                            //if(value.ToString()
                             {
                                 return ValidationResult.Success;
                             }

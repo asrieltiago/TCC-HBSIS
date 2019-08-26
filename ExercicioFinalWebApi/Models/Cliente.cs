@@ -15,7 +15,7 @@ namespace ExercicioFinalWebApi.Models
         public string NomeCompleto { get; set; }
 
         [CustomValidFields(Enums.ValidFields.ValidaEstadoCivil)]
-        public string EstadoCivil { get; set; }
+        public Enums.ValidEstadoCivil EstadoCivil { get; set; }
 
         [CustomValidFields(Enums.ValidFields.ValidaIdentidade)]
         public string Identidade { get; set; }
