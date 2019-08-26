@@ -15,7 +15,6 @@ namespace SistemaLocacaoHBSIS.Models
         public int IdColaborador { get; set; }       
         public int IdPeriodo { get; set; }
         public bool AceiteTermo { get; set; }
-        public decimal Valor { get; set; }
         public Enums.StatusLocacao Status { get; set; }
 
     }

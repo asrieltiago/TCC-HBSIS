@@ -10,10 +10,8 @@ namespace SistemaLocacaoHBSIS.Models
     {
         public DbSet<Colaborador> colaboradores { get; set; }
         public DbSet<Locacao> locacoes { get; set; }
-        public DbSet<MarcaAutomovel> marcaAutomoveis { get; set; }
-        public DbSet<MarcaMoto> marcaMotos { get; set; }
-        public DbSet<ModeloAutomovel> modeloAutomoveis { get; set; }
-        public DbSet<ModeloMoto> modeloMotos { get; set; }
+        public DbSet<Marca> marcas { get; set; }        
+        public DbSet<Modelo> modelos { get; set; }
         public DbSet<Periodo> periodos { get; set; }
         public DbSet<RegistroVeiculo> registrosVeiculos { get; set; }
         public DbSet<TermoLocacao> termoLocacatermoLocacoeso { get; set; }
