@@ -167,14 +167,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908261854234_Primeiro.cs" />
+    <Compile Include="Migrations\201908261854234_Primeiro.Designer.cs">
+      <DependentUpon>201908261854234_Primeiro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
     <Compile Include="Models\ContextDB.cs" />
     <Compile Include="Models\Locacao.cs" />
-    <Compile Include="Models\MarcaAutomovel.cs" />
-    <Compile Include="Models\MarcaMoto.cs" />
-    <Compile Include="Models\ModeloAutomovel.cs" />
-    <Compile Include="Models\ModeloMoto.cs" />
+    <Compile Include="Models\Marca.cs" />
+    <Compile Include="Models\Modelo.cs" />
     <Compile Include="Models\Periodo.cs" />
     <Compile Include="Models\RegistroVeiculo.cs" />
     <Compile Include="Models\TermoLocacao.cs" />
@@ -265,6 +267,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908261854234_Primeiro.resx">
+      <DependentUpon>201908261854234_Primeiro.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,13 +7,17 @@ using System.Web;
 
 namespace SistemaLocacaoHBSIS.Models
 {
-    public class ModeloAutomovel : UserControls
+    public class Modelo
     {
         [Key]
         public int IdModelo { get; set; }
-        public string Descricao { get; set; }   
+        public string Descricao { get; set; }
         [ForeignKey("IdMarca")]
-        public MarcaAutomovel Marca { get; set; }
+        public Marca Marca { get; set; }
         public int IdMarca { get; set; }
+
+        [ForeignKey("IdTipo")]
+        public TipoVeiculo Tipo { get; set; }
+        public int IdTipo { get; set; }
     }
 }
