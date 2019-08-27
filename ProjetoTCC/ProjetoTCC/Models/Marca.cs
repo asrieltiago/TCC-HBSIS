@@ -7,6 +7,7 @@ using System.Web;
 
 namespace SistemaLocacaoHBSIS.Models
 {
+    [Table("Marcas")]
     public class Marca
     {
         [Key]

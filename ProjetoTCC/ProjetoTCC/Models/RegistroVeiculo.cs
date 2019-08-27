@@ -7,6 +7,7 @@ using System.Web;
 
 namespace SistemaLocacaoHBSIS.Models
 {
+    [Table("RegistroVeiculos")]
     public class RegistroVeiculo : UserControls
     {
         [Key]
@@ -18,9 +19,9 @@ namespace SistemaLocacaoHBSIS.Models
         public virtual Modelo Modelo { get; set; }
         public int IdModelo { get; set; }
 
-        [ForeignKey("IdCor")]
+        //[ForeignKey("IdCor")]
         public virtual TipoCor Cor { get; set; }
-        public int IdCor { get; set; }
+        //public int IdCor { get; set; }
 
     }
 }

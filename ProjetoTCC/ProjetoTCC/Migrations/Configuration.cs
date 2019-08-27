@@ -47,7 +47,7 @@ namespace ProjetoTCC.Migrations
                 new Marca(){TipoVeiculo = TipoVeiculos.Single(x => x.Descricao == "Automóvel") , Codigo = incrementCodigo++,Descricao = "Renault"},
                 new Marca(){TipoVeiculo = TipoVeiculos.Single(x => x.Descricao == "Automóvel") , Codigo = incrementCodigo++,Descricao = "Toyota"},
                 new Marca(){TipoVeiculo = TipoVeiculos.Single(x => x.Descricao == "Automóvel") , Codigo = incrementCodigo++,Descricao = "Volkswagen"},
-                                         
+
                 new Marca(){TipoVeiculo = TipoVeiculos.Single(x => x.Descricao == "Moto") , Codigo = incrementCodigo++,Descricao = "Dafra"},
                 new Marca(){TipoVeiculo = TipoVeiculos.Single(x => x.Descricao == "Moto") , Codigo = incrementCodigo++,Descricao = "Honda"},
                 new Marca(){TipoVeiculo = TipoVeiculos.Single(x => x.Descricao == "Moto") , Codigo = incrementCodigo++,Descricao = "Suzuki"},
@@ -57,7 +57,7 @@ namespace ProjetoTCC.Migrations
                 new Marca(){TipoVeiculo = TipoVeiculos.Single(x => x.Descricao == "Moto") , Codigo = incrementCodigo++,Descricao = "Ducati"},
             };
 
-            Marcas.ForEach(s => context.marcas.AddOrUpdate(p => p.Id, s));
+            Marcas.ForEach(s => context.marcas.AddOrUpdate(p => p.Codigo, s));
             context.SaveChanges();
 
             var Modelos = new List<Modelo>()
@@ -107,7 +107,7 @@ namespace ProjetoTCC.Migrations
                 new Modelo(){ Marca = Marcas.Single(x => x.Descricao == "Audi" && x.TipoVeiculo.Codigo == 0),Descricao = "TT" },
                 new Modelo(){ Marca = Marcas.Single(x => x.Descricao == "Audi" && x.TipoVeiculo.Codigo == 0),Descricao = "TT RS" },
                 new Modelo(){ Marca = Marcas.Single(x => x.Descricao == "Audi" && x.TipoVeiculo.Codigo == 0),Descricao = "TTS" },
-                                                                                    
+
                 new Modelo(){ Marca = Marcas.Single(x => x.Descricao == "BMW" && x.TipoVeiculo.Codigo == 0),Descricao = "1M"},
                 new Modelo(){ Marca = Marcas.Single(x => x.Descricao == "BMW" && x.TipoVeiculo.Codigo == 0),Descricao = "2800"},
                 new Modelo(){ Marca = Marcas.Single(x => x.Descricao == "BMW" && x.TipoVeiculo.Codigo == 0),Descricao = "I3"},
@@ -958,6 +958,23 @@ namespace ProjetoTCC.Migrations
             };
 
             Modelos.ForEach(s => context.modelos.AddOrUpdate(p => p.Descricao, s));
+            context.SaveChanges();
+
+            var TipoCores = new List<TipoCor>() {
+                new TipoCor(){Descricao =  "Branco" },
+                new TipoCor(){Descricao =  "Preto" },
+                new TipoCor(){Descricao =  "Prata" },
+                new TipoCor(){Descricao =  "Cinza" },
+                new TipoCor(){Descricao =  "Vermelho" },
+                new TipoCor(){Descricao =  "Marrom/Bege" },
+                new TipoCor(){Descricao =  "Azul" },
+                new TipoCor(){Descricao =  "Verde" },
+                new TipoCor(){Descricao =  "Amarelo/Dourado" },
+                new TipoCor(){Descricao =  "Outras" },
+                };
+
+            context.tipoCores.AddRange(TipoCores);
+            //TipoCores.ForEach(s => context.tipoCores.AddOrUpdate(p => p.Descricao, s));
             context.SaveChanges();
         }
     }

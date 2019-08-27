@@ -7,6 +7,7 @@ using System.Web;
 
 namespace SistemaLocacaoHBSIS.Models
 {
+    [Table("Modelos")]
     public class Modelo
     {
         [Key]
@@ -14,9 +15,9 @@ namespace SistemaLocacaoHBSIS.Models
 
         public string Descricao { get; set; }
 
-        [ForeignKey("IdMarca")]
+        //[ForeignKey("IdMarca")]
         public virtual Marca Marca { get; set; }
-        public int IdMarca { get; set; }
+        //public int IdMarca { get; set; }
 
     }
 }

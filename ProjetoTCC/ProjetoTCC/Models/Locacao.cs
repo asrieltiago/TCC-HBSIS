@@ -7,30 +7,31 @@ using System.Web;
 
 namespace SistemaLocacaoHBSIS.Models
 {
+    [Table("Locacoes")]
     public class Locacao : UserControls
     {
         [Key]
         public int Id { get; set; }        
 
-        [ForeignKey("IdTipo")]
+        //[ForeignKey("IdTipo")]
         public virtual TipoVeiculo TipoVeiculo { get; set; }
-        public int IdTipo { get; set; }
+        //public int IdTipo { get; set; }
 
-        [ForeignKey("IdRegistroVeiculo")]
+        //[ForeignKey("IdRegistroVeiculo")]
         public virtual RegistroVeiculo RegistroVeiculo { get; set; }
-        public int IdRegistroVeiculo { get; set; }
+        //public int IdRegistroVeiculo { get; set; }
 
-        [ForeignKey("IdColaborador")]
+        //[ForeignKey("IdColaborador")]
         public virtual Colaborador Colaborador { get; set; }
-        public int IdColaborador { get; set; }
+        //public int IdColaborador { get; set; }
 
-        [ForeignKey("IdPeriodo")]
+        //[ForeignKey("IdPeriodo")]
         public virtual Periodo Periodo { get; set; }
-        public int IdPeriodo { get; set; }
+        //public int IdPeriodo { get; set; }
 
-        [ForeignKey("IdTermo")]
+        //[ForeignKey("IdTermo")]
         public virtual TermoLocacao TermoLocacao { get; set; }
-        public int IdTermo { get; set; }
+        //public int IdTermo { get; set; }
 
         public bool AceiteTermo { get; set; }
 
