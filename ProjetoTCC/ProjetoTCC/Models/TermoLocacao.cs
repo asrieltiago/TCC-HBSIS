@@ -9,7 +9,7 @@ namespace SistemaLocacaoHBSIS.Models
     public class TermoLocacao : UserControls
     {
         [Key]
-        public int IdTermo { get; set; }
+        public int Id { get; set; }
         public string Termo { get; set; }
     }
 }

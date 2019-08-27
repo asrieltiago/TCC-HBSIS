@@ -9,7 +9,7 @@ namespace SistemaLocacaoHBSIS.Models
     public class Periodo
     {
         [Key]
-        public int IdPeriodo { get; set; }
+        public int Id { get; set; }
         public DateTime DataInicial { get; set; } = DateTime.Now;
         public DateTime DataFinal { get; set; } = DateTime.Now.AddMonths(+6);
         

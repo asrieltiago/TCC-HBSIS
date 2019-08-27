@@ -30,34 +30,35 @@ namespace ProjetoTCC.Migrations
 
             var Marcas = new List<Marca>()
             {
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Audi"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "BMW"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Chevrolet"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Citröen"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Fiat"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Ford"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Honda"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Hyundai"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Jeep"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Kia"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Mitsubishi"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Nissan"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Peugeot"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Renault"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Toyota"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Automóvel"),CodigoMarca = incrementCodigoMarca++,Descricao = "Volkswagen"},
-
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Moto"),CodigoMarca = incrementCodigoMarca++,Descricao = "Dafra"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Moto"),CodigoMarca = incrementCodigoMarca++,Descricao = "Honda"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Moto"),CodigoMarca = incrementCodigoMarca++,Descricao = "Suzuki"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Moto"),CodigoMarca = incrementCodigoMarca++,Descricao = "Yamaha"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Moto"),CodigoMarca = incrementCodigoMarca++,Descricao = "Kawasaki"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Moto"),CodigoMarca = incrementCodigoMarca++,Descricao = "BMW"},
-                new Marca(){CodigoTipo = TipoVeiculos.Single(x => x.Descricao == "Moto"),CodigoMarca = incrementCodigoMarca++,Descricao = "Ducati"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Audi"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "BMW"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Chevrolet"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Citröen"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Fiat"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Ford"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Honda"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Hyundai"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Jeep"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Kia"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Mitsubishi"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Nissan"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Peugeot"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Renault"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Toyota"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Automóvel")),CodigoMarca = incrementCodigoMarca++,Descricao = "Volkswagen"},
+                //                         
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Moto")),CodigoMarca = incrementCodigoMarca++,Descricao = "Dafra"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Moto")),CodigoMarca = incrementCodigoMarca++,Descricao = "Honda"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Moto")),CodigoMarca = incrementCodigoMarca++,Descricao = "Suzuki"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Moto")),CodigoMarca = incrementCodigoMarca++,Descricao = "Yamaha"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Moto")),CodigoMarca = incrementCodigoMarca++,Descricao = "Kawasaki"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Moto")),CodigoMarca = incrementCodigoMarca++,Descricao = "BMW"},
+                //new Marca(){CodigoTipo = Convert.ToInt32(TipoVeiculos.Single(x => x.Descricao == "Moto")),CodigoMarca = incrementCodigoMarca++,Descricao = "Ducati"},
             };
 
-            Marcas.ForEach(s => context.marcas.AddOrUpdate(p => p.IdMarca, s));
-            context.SaveChanges();            
+            Marcas.ForEach(s => context.marcas.AddOrUpdate(p => p.Id, s));
+            context.SaveChanges();
+            
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SistemaLocacaoHBSIS.Models
     public class TipoCor : UserControls
     {
         [Key]
-        public int IdCor { get; set; }
+        public int Id { get; set; }
         public string Descricao { get; set; }
     }
 }

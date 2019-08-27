@@ -15,11 +15,11 @@ namespace SistemaLocacaoHBSIS.Models
         public string Placa { get; set; }
 
         [ForeignKey("IdModelo")]
-        public Modelo Modelo { get; set; }
+        public virtual Modelo Modelo { get; set; }
         public int IdModelo { get; set; }
 
         [ForeignKey("IdCor")]
-        public TipoCor Cor { get; set; }
+        public virtual TipoCor Cor { get; set; }
         public int IdCor { get; set; }
 
     }
