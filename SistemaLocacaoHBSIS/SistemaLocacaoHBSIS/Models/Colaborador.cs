@@ -67,7 +67,5 @@ namespace SistemaLocacaoHBSIS.Models
             return anos;
         }
 
-
-
     }
 }

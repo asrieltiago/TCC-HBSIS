@@ -10,7 +10,8 @@ namespace SistemaLocacaoHBSIS.Models
     {     
         [Key]
         public int IdTipo { get; set; }
-        public string Tipo { get; set; }
+        public int CodigoTipo { get; set; }
+        public string Descricao { get; set; }
         public decimal Valor { get; set; }
         
       

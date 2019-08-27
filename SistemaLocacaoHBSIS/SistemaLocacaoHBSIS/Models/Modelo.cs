@@ -18,8 +18,5 @@ namespace SistemaLocacaoHBSIS.Models
         public Marca Marca { get; set; }
         public int IdMarca { get; set; }
 
-        [ForeignKey("IdTipo")]
-        public TipoVeiculo Tipo { get; set; }
-        public int IdTipo { get; set; }
     }
 }
