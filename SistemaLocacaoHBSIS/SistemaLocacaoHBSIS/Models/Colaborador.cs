@@ -17,38 +17,39 @@ namespace SistemaLocacaoHBSIS.Models
         public bool Carona { get; set; }
         public bool Idoso { get; set; }
         public bool ResideFora { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public int Idade
-        {
-            get
-            {
-                int anos = DateTime.Now.Year - DataNascimento.Year;
+        public DateTime DataNascimento { get; set; }        
+        public int Idade { get; set; }
+        //public int Idade
+        //{
+        //    get
+        //    {
+        //        int anos = DateTime.Now.Year - DataNascimento.Year;
+        //
+        //        if (DateTime.Now.Month < DataNascimento.Month || (DateTime.Now.Month == DataNascimento.Month && DateTime.Now.Day < DataNascimento.Day))
+        //            anos--;
+        //
+        //        return anos;
+        //    }
+        //    set
+        //    {
+        //        this.Idade = value;
+        //    }
+        //}
 
-                if (DateTime.Now.Month < DataNascimento.Month || (DateTime.Now.Month == DataNascimento.Month && DateTime.Now.Day < DataNascimento.Day))
-                    anos--;
-
-                return anos;
-            }
-            set
-            {
-                this.Idade = value;
-            }
-        }
-
-        public int IdadeDois
-        {
-            get { return this.Idade; }
-
-            set
-            {
-                int anos = DateTime.Now.Year - DataNascimento.Year;
-
-                if (DateTime.Now.Month < DataNascimento.Month || (DateTime.Now.Month == DataNascimento.Month && DateTime.Now.Day < DataNascimento.Day))
-                    anos--;
-
-                this.IdadeDois = value;
-            }
-        }
+        //public int IdadeDois
+        //{
+        //    get { return this.Idade; }
+        //
+        //    set
+        //    {
+        //        int anos = DateTime.Now.Year - DataNascimento.Year;
+        //
+        //        if (DateTime.Now.Month < DataNascimento.Month || (DateTime.Now.Month == DataNascimento.Month && DateTime.Now.Day < DataNascimento.Day))
+        //            anos--;
+        //
+        //        this.IdadeDois = value;
+        //    }
+        //}
 
 
         /// <summary>
@@ -56,16 +57,16 @@ namespace SistemaLocacaoHBSIS.Models
         /// </summary>
         /// <param name="DataNascimento">Data de Nascimento do Colaborador</param>
         /// <returns>Ainda sem retorno.</returns>
-        public static int CalculateIdade(DateTime DataNascimento)
-        {
-            int anos = DateTime.Now.Year - DataNascimento.Year;
-
-            if (DateTime.Now.Month < DataNascimento.Month || (DateTime.Now.Month == DataNascimento.Month && DateTime.Now.Day < DataNascimento.Day))
-
-                anos--;
-
-            return anos;
-        }
+        //public static int CalculateIdade(DateTime DataNascimento)
+        //{
+        //    int anos = DateTime.Now.Year - DataNascimento.Year;
+        //
+        //    if (DateTime.Now.Month < DataNascimento.Month || (DateTime.Now.Month == DataNascimento.Month && DateTime.Now.Day < DataNascimento.Day))
+        //
+        //        anos--;
+        //
+        //    return anos;
+        //}
 
     }
 }
