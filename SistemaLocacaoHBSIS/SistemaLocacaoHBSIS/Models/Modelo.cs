@@ -11,7 +11,6 @@ namespace SistemaLocacaoHBSIS.Models
     {
         [Key]
         public int IdModelo { get; set; }
-
         public string Descricao { get; set; }
 
         [ForeignKey("IdMarca")]
