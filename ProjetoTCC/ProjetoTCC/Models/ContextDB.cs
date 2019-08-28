@@ -13,7 +13,6 @@ namespace SistemaLocacaoHBSIS.Models
         public DbSet<Marca> marcas { get; set; }        
         public DbSet<Modelo> modelos { get; set; }
         public DbSet<Periodo> periodos { get; set; }
-        public DbSet<RegistroVeiculo> registroVeiculos { get; set; }
         public DbSet<TermoLocacao> termoLocacoes { get; set; }
         public DbSet<TipoCor> tipoCores { get; set; }
         public DbSet<TipoVeiculo> tipoVeiculos { get; set; }

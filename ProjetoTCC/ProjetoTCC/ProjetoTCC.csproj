@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201908281344481_seg.Designer.cs">
       <DependentUpon>201908281344481_seg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908281822004_Terceiro.cs" />
+    <Compile Include="Migrations\201908281822004_Terceiro.Designer.cs">
+      <DependentUpon>201908281822004_Terceiro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
     <Compile Include="Models\ContextDB.cs" />
@@ -192,7 +196,6 @@
     <Compile Include="Models\Marca.cs" />
     <Compile Include="Models\Modelo.cs" />
     <Compile Include="Models\Periodo.cs" />
-    <Compile Include="Models\RegistroVeiculo.cs" />
     <Compile Include="Models\TermoLocacao.cs" />
     <Compile Include="Models\TipoCor.cs" />
     <Compile Include="Models\TipoVeiculo.cs" />
@@ -288,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908281344481_seg.resx">
       <DependentUpon>201908281344481_seg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281822004_Terceiro.resx">
+      <DependentUpon>201908281822004_Terceiro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
