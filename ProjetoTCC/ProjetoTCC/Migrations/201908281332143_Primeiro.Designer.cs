@@ -7,13 +7,13 @@ namespace ProjetoTCC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Terceiro : IMigrationMetadata
+    public sealed partial class Primeiro : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Terceiro));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Primeiro));
         
         string IMigrationMetadata.Id
         {
-            get { return "201908271929540_Terceiro"; }
+            get { return "201908281332143_Primeiro"; }
         }
         
         string IMigrationMetadata.Source

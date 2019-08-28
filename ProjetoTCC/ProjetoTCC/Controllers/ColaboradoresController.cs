@@ -13,44 +13,44 @@ using SistemaLocacaoHBSIS.Models;
 
 namespace ProjetoTCC.Controllers
 {
-    public class PeriodosController : ApiController
+    public class ColaboradoresController : ApiController
     {
         private ContextDB db = new ContextDB();
 
-        // GET: api/Periodos
-        public IQueryable<Periodo> Getperiodos()
+        // GET: api/Colaboradores
+        public IQueryable<Colaborador> Getcolaboradores()
         {
-            return db.periodos;
+            return db.colaboradores;
         }
 
-        // GET: api/Periodos/5
-        [ResponseType(typeof(Periodo))]
-        public async Task<IHttpActionResult> GetPeriodo(int id)
+        // GET: api/Colaboradores/5
+        [ResponseType(typeof(Colaborador))]
+        public async Task<IHttpActionResult> GetColaborador(int id)
         {
-            Periodo periodo = await db.periodos.FindAsync(id);
-            if (periodo == null)
+            Colaborador colaborador = await db.colaboradores.FindAsync(id);
+            if (colaborador == null)
             {
                 return NotFound();
             }
 
-            return Ok(periodo);
+            return Ok(colaborador);
         }
 
-        // PUT: api/Periodos/5
+        // PUT: api/Colaboradores/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPeriodo(int id, Periodo periodo)
+        public async Task<IHttpActionResult> PutColaborador(int id, Colaborador colaborador)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != periodo.Id)
+            if (id != colaborador.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(periodo).State = EntityState.Modified;
+            db.Entry(colaborador).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace ProjetoTCC.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PeriodoExists(id))
+                if (!ColaboradorExists(id))
                 {
                     return NotFound();
                 }
@@ -71,44 +71,35 @@ namespace ProjetoTCC.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Periodos
-        [ResponseType(typeof(Periodo))]
-        public async Task<IHttpActionResult> PostPeriodo(Periodo periodo)
+        // POST: api/Colaboradores
+        [ResponseType(typeof(Colaborador))]
+        public async Task<IHttpActionResult> PostColaborador(Colaborador colaborador)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-
-            var tipo = db.tipoVeiculos.FirstOrDefault(x => x.Codigo == periodo.TipoVeiculo.Codigo);
-
-            if (tipo == null)
-                return BadRequest("Tipo informado é inválido.");
-
-            periodo.TipoVeiculo = tipo;
-
-            db.periodos.Add(periodo);
+            db.colaboradores.Add(colaborador);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = periodo.Id }, periodo);
-
+            return CreatedAtRoute("DefaultApi", new { id = colaborador.Id }, colaborador);
         }
 
-        // DELETE: api/Periodos/5
-        [ResponseType(typeof(Periodo))]
-        public async Task<IHttpActionResult> DeletePeriodo(int id)
+        // DELETE: api/Colaboradores/5
+        [ResponseType(typeof(Colaborador))]
+        public async Task<IHttpActionResult> DeleteColaborador(int id)
         {
-            Periodo periodo = await db.periodos.FindAsync(id);
-            if (periodo == null)
+            Colaborador colaborador = await db.colaboradores.FindAsync(id);
+            if (colaborador == null)
             {
                 return NotFound();
             }
 
-            db.periodos.Remove(periodo);
+            db.colaboradores.Remove(colaborador);
             await db.SaveChangesAsync();
 
-            return Ok(periodo);
+            return Ok(colaborador);
         }
 
         protected override void Dispose(bool disposing)
@@ -120,9 +111,9 @@ namespace ProjetoTCC.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PeriodoExists(int id)
+        private bool ColaboradorExists(int id)
         {
-            return db.periodos.Count(e => e.Id == id) > 0;
+            return db.colaboradores.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -13,8 +13,12 @@ namespace SistemaLocacaoHBSIS.Models
         [Key]
         public int Id { get; set; }
         public int Vagas { get; set; }
-        public virtual TipoVeiculo TipoVeiculo { get; set; }
         public DateTime DataInicial { get; set; } = DateTime.Now;
-        public DateTime DataFinal { get; set; } = DateTime.Now.AddMonths(+6);        
+        public DateTime DataFinal { get; set; } = DateTime.Now.AddMonths(+6);
+
+        /// <summary>
+        /// No POST deve-se informar TipoVeiculo.Codigo
+        /// </summary>
+        public virtual TipoVeiculo TipoVeiculo { get; set; }
     }
 }

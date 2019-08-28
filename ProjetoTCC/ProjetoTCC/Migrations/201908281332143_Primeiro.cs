@@ -11,18 +11,16 @@ namespace ProjetoTCC.Migrations
                 "dbo.Colaboradores",
                 c => new
                     {
-                        IdColaborador = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Nome = c.String(),
                         Email = c.String(),
+                        DataNascimento = c.DateTime(nullable: false),
                         Pcd = c.Boolean(nullable: false),
                         TrabalhoNoturno = c.Boolean(nullable: false),
                         Carona = c.Boolean(nullable: false),
-                        Idoso = c.Boolean(nullable: false),
                         ResideFora = c.Boolean(nullable: false),
-                        DataNascimento = c.DateTime(nullable: false),
-                        Idade = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.IdColaborador);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Locacoes",
@@ -36,31 +34,43 @@ namespace ProjetoTCC.Migrations
                         UsuarioAlteracao = c.Int(nullable: false),
                         DataCriacao = c.DateTime(nullable: false),
                         DataAlteracao = c.DateTime(nullable: false),
-                        Colaborador_IdColaborador = c.Int(),
+                        Colaborador_Id = c.Int(),
                         Periodo_Id = c.Int(),
-                        RegistroVeiculo_IdRegistro = c.Int(),
+                        RegistroVeiculo_Id = c.Int(),
                         TermoLocacao_Id = c.Int(),
-                        TipoVeiculo_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Colaboradores", t => t.Colaborador_IdColaborador)
+                .ForeignKey("dbo.Colaboradores", t => t.Colaborador_Id)
                 .ForeignKey("dbo.Periodos", t => t.Periodo_Id)
-                .ForeignKey("dbo.RegistroVeiculos", t => t.RegistroVeiculo_IdRegistro)
+                .ForeignKey("dbo.RegistroVeiculos", t => t.RegistroVeiculo_Id)
                 .ForeignKey("dbo.TermoLocacoes", t => t.TermoLocacao_Id)
-                .ForeignKey("dbo.TipoVeiculos", t => t.TipoVeiculo_Id)
-                .Index(t => t.Colaborador_IdColaborador)
+                .Index(t => t.Colaborador_Id)
                 .Index(t => t.Periodo_Id)
-                .Index(t => t.RegistroVeiculo_IdRegistro)
-                .Index(t => t.TermoLocacao_Id)
-                .Index(t => t.TipoVeiculo_Id);
+                .Index(t => t.RegistroVeiculo_Id)
+                .Index(t => t.TermoLocacao_Id);
             
             CreateTable(
                 "dbo.Periodos",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
+                        Vagas = c.Int(nullable: false),
                         DataInicial = c.DateTime(nullable: false),
                         DataFinal = c.DateTime(nullable: false),
+                        TipoVeiculo_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.TipoVeiculos", t => t.TipoVeiculo_Id)
+                .Index(t => t.TipoVeiculo_Id);
+            
+            CreateTable(
+                "dbo.TipoVeiculos",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Codigo = c.Int(nullable: false),
+                        Descricao = c.String(nullable: false),
+                        Valor = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -68,21 +78,21 @@ namespace ProjetoTCC.Migrations
                 "dbo.RegistroVeiculos",
                 c => new
                     {
-                        IdRegistro = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Placa = c.String(),
-                        IdModelo = c.Int(nullable: false),
                         Ativo = c.Boolean(nullable: false),
                         UsuarioCriacao = c.Int(nullable: false),
                         UsuarioAlteracao = c.Int(nullable: false),
                         DataCriacao = c.DateTime(nullable: false),
                         DataAlteracao = c.DateTime(nullable: false),
                         Cor_Id = c.Int(),
+                        Modelo_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.IdRegistro)
+                .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.TipoCores", t => t.Cor_Id)
-                .ForeignKey("dbo.Modelos", t => t.IdModelo, cascadeDelete: true)
-                .Index(t => t.IdModelo)
-                .Index(t => t.Cor_Id);
+                .ForeignKey("dbo.Modelos", t => t.Modelo_Id)
+                .Index(t => t.Cor_Id)
+                .Index(t => t.Modelo_Id);
             
             CreateTable(
                 "dbo.TipoCores",
@@ -124,22 +134,6 @@ namespace ProjetoTCC.Migrations
                 .Index(t => t.TipoVeiculo_Id);
             
             CreateTable(
-                "dbo.TipoVeiculos",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Codigo = c.Int(nullable: false),
-                        Descricao = c.String(),
-                        Valor = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Ativo = c.Boolean(nullable: false),
-                        UsuarioCriacao = c.Int(nullable: false),
-                        UsuarioAlteracao = c.Int(nullable: false),
-                        DataCriacao = c.DateTime(nullable: false),
-                        DataAlteracao = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.TermoLocacoes",
                 c => new
                     {
@@ -157,30 +151,30 @@ namespace ProjetoTCC.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Locacoes", "TipoVeiculo_Id", "dbo.TipoVeiculos");
             DropForeignKey("dbo.Locacoes", "TermoLocacao_Id", "dbo.TermoLocacoes");
-            DropForeignKey("dbo.Locacoes", "RegistroVeiculo_IdRegistro", "dbo.RegistroVeiculos");
-            DropForeignKey("dbo.RegistroVeiculos", "IdModelo", "dbo.Modelos");
+            DropForeignKey("dbo.Locacoes", "RegistroVeiculo_Id", "dbo.RegistroVeiculos");
+            DropForeignKey("dbo.RegistroVeiculos", "Modelo_Id", "dbo.Modelos");
             DropForeignKey("dbo.Modelos", "Marca_Id", "dbo.Marcas");
             DropForeignKey("dbo.Marcas", "TipoVeiculo_Id", "dbo.TipoVeiculos");
             DropForeignKey("dbo.RegistroVeiculos", "Cor_Id", "dbo.TipoCores");
             DropForeignKey("dbo.Locacoes", "Periodo_Id", "dbo.Periodos");
-            DropForeignKey("dbo.Locacoes", "Colaborador_IdColaborador", "dbo.Colaboradores");
+            DropForeignKey("dbo.Periodos", "TipoVeiculo_Id", "dbo.TipoVeiculos");
+            DropForeignKey("dbo.Locacoes", "Colaborador_Id", "dbo.Colaboradores");
             DropIndex("dbo.Marcas", new[] { "TipoVeiculo_Id" });
             DropIndex("dbo.Modelos", new[] { "Marca_Id" });
+            DropIndex("dbo.RegistroVeiculos", new[] { "Modelo_Id" });
             DropIndex("dbo.RegistroVeiculos", new[] { "Cor_Id" });
-            DropIndex("dbo.RegistroVeiculos", new[] { "IdModelo" });
-            DropIndex("dbo.Locacoes", new[] { "TipoVeiculo_Id" });
+            DropIndex("dbo.Periodos", new[] { "TipoVeiculo_Id" });
             DropIndex("dbo.Locacoes", new[] { "TermoLocacao_Id" });
-            DropIndex("dbo.Locacoes", new[] { "RegistroVeiculo_IdRegistro" });
+            DropIndex("dbo.Locacoes", new[] { "RegistroVeiculo_Id" });
             DropIndex("dbo.Locacoes", new[] { "Periodo_Id" });
-            DropIndex("dbo.Locacoes", new[] { "Colaborador_IdColaborador" });
+            DropIndex("dbo.Locacoes", new[] { "Colaborador_Id" });
             DropTable("dbo.TermoLocacoes");
-            DropTable("dbo.TipoVeiculos");
             DropTable("dbo.Marcas");
             DropTable("dbo.Modelos");
             DropTable("dbo.TipoCores");
             DropTable("dbo.RegistroVeiculos");
+            DropTable("dbo.TipoVeiculos");
             DropTable("dbo.Periodos");
             DropTable("dbo.Locacoes");
             DropTable("dbo.Colaboradores");

@@ -24,5 +24,12 @@ namespace ProjetoTCC.Controllers
         {
             return db.modelos.Where(x => x.Marca.Codigo == id);
         }
+
+        [Route("Api/Periodos/{id}/Tipo")]
+        [HttpGet]
+        public IQueryable<Periodo> GetPeriodosPorMarcaVigentes(int id)
+        {
+            return db.periodos.Where(x => x.TipoVeiculo.Codigo == id && DateTime.Now <= x.DataFinal);
+        }
     }
 }

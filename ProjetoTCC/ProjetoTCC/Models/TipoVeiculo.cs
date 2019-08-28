@@ -8,11 +8,11 @@ using System.Web;
 namespace SistemaLocacaoHBSIS.Models
 {
     [Table("TipoVeiculos")]
-    public class TipoVeiculo : UserControls
+    public class TipoVeiculo
     {     
         [Key]
         public int Id { get; set; }
-        public int Codigo { get; set; }
+        public int Codigo { get; set; }        
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
         

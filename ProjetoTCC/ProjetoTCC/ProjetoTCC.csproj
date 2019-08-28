@@ -161,8 +161,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ColaboradoresController.cs" />
     <Compile Include="Controllers\CustomQuerysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocacoesController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ModelosController.cs" />
     <Compile Include="Controllers\PeriodosController.cs" />
@@ -174,21 +176,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908271745399_Primeiro.cs" />
-    <Compile Include="Migrations\201908271745399_Primeiro.Designer.cs">
-      <DependentUpon>201908271745399_Primeiro.cs</DependentUpon>
+    <Compile Include="Migrations\201908281332143_Primeiro.cs" />
+    <Compile Include="Migrations\201908281332143_Primeiro.Designer.cs">
+      <DependentUpon>201908281332143_Primeiro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908271927172_Segundo.cs" />
-    <Compile Include="Migrations\201908271927172_Segundo.Designer.cs">
-      <DependentUpon>201908271927172_Segundo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908271929540_Terceiro.cs" />
-    <Compile Include="Migrations\201908271929540_Terceiro.Designer.cs">
-      <DependentUpon>201908271929540_Terceiro.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908281307455_Quarto.cs" />
-    <Compile Include="Migrations\201908281307455_Quarto.Designer.cs">
-      <DependentUpon>201908281307455_Quarto.cs</DependentUpon>
+    <Compile Include="Migrations\201908281344481_seg.cs" />
+    <Compile Include="Migrations\201908281344481_seg.Designer.cs">
+      <DependentUpon>201908281344481_seg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
@@ -289,17 +283,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908271745399_Primeiro.resx">
-      <DependentUpon>201908271745399_Primeiro.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908281332143_Primeiro.resx">
+      <DependentUpon>201908281332143_Primeiro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908271927172_Segundo.resx">
-      <DependentUpon>201908271927172_Segundo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908271929540_Terceiro.resx">
-      <DependentUpon>201908271929540_Terceiro.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908281307455_Quarto.resx">
-      <DependentUpon>201908281307455_Quarto.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908281344481_seg.resx">
+      <DependentUpon>201908281344481_seg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

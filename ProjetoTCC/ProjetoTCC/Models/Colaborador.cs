@@ -15,9 +15,9 @@ namespace SistemaLocacaoHBSIS.Models
         public string Nome { get; set; }
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
-        public bool Pcd { get; set; }
-        public bool TrabalhoNoturno { get; set; }
-        public bool Carona { get; set; }
-        public bool ResideFora { get; set; }
+        public bool Pcd { get; set; } = false;       
+        public bool TrabalhoNoturno { get; set; } = false;
+        public bool Carona { get; set; } = false;
+        public bool ResideFora { get; set; } = false;
     }
 }
