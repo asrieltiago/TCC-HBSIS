@@ -189,6 +189,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
     <Compile Include="Models\ContextDB.cs" />
+    <Compile Include="Models\CustomQuerys.cs" />
     <Compile Include="Models\Locacao.cs" />
     <Compile Include="Models\Marca.cs" />
     <Compile Include="Models\Modelo.cs" />

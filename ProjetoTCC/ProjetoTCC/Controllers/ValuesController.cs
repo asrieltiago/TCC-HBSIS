@@ -9,6 +9,23 @@ namespace ProjetoTCC.Controllers
 {
     public class ValuesController : ApiController
     {
+        [Route("Api/Values/{filter}/Contendo")]
+        public IEnumerable<string> ObtemContendo(string filter)
+        {
+            var listInfo = new List<string>()
+          {
+              "Contem 1",
+              "Contem 1.1",
+              "Contem 1.2",
+              "Contem 1.3",
+              "Contem 1.4",
+              "Contem 1.5",
+          };
+
+            return listInfo.Where(x => x.Contains(filter));
+        }
+
+
         // GET api/values
         public IEnumerable<string> Get()
         {

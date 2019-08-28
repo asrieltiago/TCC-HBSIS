@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,7 +16,8 @@ namespace ProjetoTCC.Controllers
 {
     public class TermoLocacoesController : ApiController
     {
-        private ContextDB db = new ContextDB();
+        private ContextDB db = new ContextDB();      
+        
 
         // GET: api/TermoLocacoes
         public IQueryable<TermoLocacao> GettermoLocacoes()
@@ -71,25 +73,19 @@ namespace ProjetoTCC.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        
         // POST: api/TermoLocacoes
         [ResponseType(typeof(TermoLocacao))]
         public async Task<IHttpActionResult> PostTermoLocacao(TermoLocacao termoLocacao)
-        {
-            TermoLocacao termo = await db.termoLocacoes.FindAsync(termoLocacao.Id);
-
+        {      
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-
-            var termoanterior = termo.Id--;
-
-            termoanterior.Ativo = false;
-
-            await db.SaveChangesAsync();
-
-
+            var termo = db.termoLocacoes.FirstOrDefault(x => x.Ativo == true);
+            if (termo != null)            
+                termo.Ativo = false; 
 
             db.termoLocacoes.Add(termoLocacao);
             await db.SaveChangesAsync();
