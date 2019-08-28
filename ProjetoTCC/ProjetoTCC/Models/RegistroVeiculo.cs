@@ -11,17 +11,9 @@ namespace SistemaLocacaoHBSIS.Models
     public class RegistroVeiculo : UserControls
     {
         [Key]
-        public int IdRegistro { get; set; }
-
+        public int Id { get; set; }
         public string Placa { get; set; }
-
-        [ForeignKey("IdModelo")]
         public virtual Modelo Modelo { get; set; }
-        public int IdModelo { get; set; }
-
-        //[ForeignKey("IdCor")]
         public virtual TipoCor Cor { get; set; }
-        //public int IdCor { get; set; }
-
     }
 }

@@ -186,6 +186,10 @@
     <Compile Include="Migrations\201908271929540_Terceiro.Designer.cs">
       <DependentUpon>201908271929540_Terceiro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908281307455_Quarto.cs" />
+    <Compile Include="Migrations\201908281307455_Quarto.Designer.cs">
+      <DependentUpon>201908281307455_Quarto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
     <Compile Include="Models\ContextDB.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908271929540_Terceiro.resx">
       <DependentUpon>201908271929540_Terceiro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281307455_Quarto.resx">
+      <DependentUpon>201908281307455_Quarto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

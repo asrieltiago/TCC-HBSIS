@@ -14,11 +14,7 @@ namespace SistemaLocacaoHBSIS.Models
         public int Id { get; set; }       
         public int Codigo { get; set; }
         public string Descricao { get; set; }
-
-        //[ForeignKey("IdTipoVeiculo")]
         public virtual TipoVeiculo TipoVeiculo { get; set; }
-        //public int IdTipoVeiculo { get; set; }
-
 
     }
 }

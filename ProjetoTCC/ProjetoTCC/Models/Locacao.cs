@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaLocacaoHBSIS.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,27 +12,13 @@ namespace SistemaLocacaoHBSIS.Models
     public class Locacao : UserControls
     {
         [Key]
-        public int Id { get; set; }    
-
-        //[ForeignKey("IdRegistroVeiculo")]
+        public int Id { get; set; }            
         public virtual RegistroVeiculo RegistroVeiculo { get; set; }
-        //public int IdRegistroVeiculo { get; set; }
-
-        //[ForeignKey("IdColaborador")]
-        public virtual Colaborador Colaborador { get; set; }
-        //public int IdColaborador { get; set; }
-
-        //[ForeignKey("IdPeriodo")]
-        public virtual Periodo Periodo { get; set; }
-        //public int IdPeriodo { get; set; }
-
-        //[ForeignKey("IdTermo")]
-        public virtual TermoLocacao TermoLocacao { get; set; }
-        //public int IdTermo { get; set; }
-
+        public virtual Colaborador Colaborador { get; set; }        
+        public virtual Periodo Periodo { get; set; }        
+        public virtual TermoLocacao TermoLocacao { get; set; }        
         public bool AceiteTermo { get; set; }
-
-        public Enums.StatusLocacao Status { get; set; }
+        public StatusLocacao Status { get; set; }
 
     }
 }
