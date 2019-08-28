@@ -80,13 +80,7 @@ namespace ProjetoTCC.Controllers
                 return BadRequest("É necessário concordar com o Termo de Uso para continuar.");
             }
 
-            if (locacao.TipoVeiculo.Codigo >= 0 && locacao.TipoVeiculo.Codigo <= 1) 
-            {
-                if (locacao.Placa != null && locacao.Modelo != null && locacao.Cor != null)
-                {
-
-                }
-            }
+            
 
             if (!ModelState.IsValid)
             {
