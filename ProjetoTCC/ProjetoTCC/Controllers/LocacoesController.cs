@@ -75,22 +75,33 @@ namespace ProjetoTCC.Controllers
         [ResponseType(typeof(Locacao))]
         public async Task<IHttpActionResult> PostLocacao(Locacao locacao)
         {
-            if (locacao.AceiteTermo == false)
-            {
-                return BadRequest("É necessário concordar com o Termo de Uso para continuar.");
-            }
-
-            
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var tipo = db.tipoVeiculos.FirstOrDefault(x => x.Codigo == locacao.TipoVeiculo.Codigo);
+            var modelo = db.modelos.FirstOrDefault(x => x.Id == locacao.Modelo.Id);
+            var colaborador = db.colaboradores.FirstOrDefault(x => x.Id == locacao.Colaborador.Id);
+            var periodo = db.periodos.FirstOrDefault(x => x.Id == locacao.Periodo.Id);
+            var cor = db.tipoCores.FirstOrDefault(x => x.Id == locacao.Cor.Id);
+            var termo = db.termoLocacoes.FirstOrDefault(x => x.Id == locacao.TermoLocacao.Id);
+
+            //if (tipo == null || modelo == null || colaborador == null || periodo == null || cor == null || termo == null)
+            //    return BadRequest("Existem campos inválidos em branco, favor verificar.");
+
+            locacao.TipoVeiculo = tipo;
+            locacao.Modelo = modelo;
+            locacao.Colaborador = colaborador;
+            locacao.Periodo = periodo;
+            locacao.Cor = cor;
+            locacao.TermoLocacao = termo;
+
             db.locacoes.Add(locacao);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = locacao.Id }, locacao);
+            return Ok("Cadastro realizado.");
+            //return CreatedAtRoute("DefaultApi", new { id = locacao.Id }, locacao);
         }
 
         // DELETE: api/Locacoes/5
