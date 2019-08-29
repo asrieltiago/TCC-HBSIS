@@ -177,17 +177,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908281332143_Primeiro.cs" />
-    <Compile Include="Migrations\201908281332143_Primeiro.Designer.cs">
-      <DependentUpon>201908281332143_Primeiro.cs</DependentUpon>
+    <Compile Include="Migrations\201908290120212_primeiro.cs" />
+    <Compile Include="Migrations\201908290120212_primeiro.Designer.cs">
+      <DependentUpon>201908290120212_primeiro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908281344481_seg.cs" />
-    <Compile Include="Migrations\201908281344481_seg.Designer.cs">
-      <DependentUpon>201908281344481_seg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908281822004_Terceiro.cs" />
-    <Compile Include="Migrations\201908281822004_Terceiro.Designer.cs">
-      <DependentUpon>201908281822004_Terceiro.cs</DependentUpon>
+    <Compile Include="Migrations\201908290159504_sgundo.cs" />
+    <Compile Include="Migrations\201908290159504_sgundo.Designer.cs">
+      <DependentUpon>201908290159504_sgundo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
@@ -288,14 +284,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908281332143_Primeiro.resx">
-      <DependentUpon>201908281332143_Primeiro.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908290120212_primeiro.resx">
+      <DependentUpon>201908290120212_primeiro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908281344481_seg.resx">
-      <DependentUpon>201908281344481_seg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908281822004_Terceiro.resx">
-      <DependentUpon>201908281822004_Terceiro.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908290159504_sgundo.resx">
+      <DependentUpon>201908290159504_sgundo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
