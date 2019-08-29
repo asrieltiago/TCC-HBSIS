@@ -25,7 +25,9 @@ namespace ProjetoTCC.Services
         {
             if (value != null)
             {
-                var codigo = dB.locacoes.Find().TipoVeiculo.Codigo;
+                //var codigo = dB.locacoes.Find().TipoVeiculo.Codigo;
+                //var codigo = dB.locacoes.SingleOrDefault(x => x.TipoVeiculo.Codigo == value);
+                               
 
                 if (codigo <= 1)
                 {
