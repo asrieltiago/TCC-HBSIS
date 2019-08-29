@@ -51,83 +51,86 @@ namespace ProjetoTCC.Services
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             Locacao locacao = (Locacao)validationContext.ObjectInstance;
-
-            if (value != null)
+            if (locacao.Status == StatusLocacao.EM_APROVACAO)
             {
-                if (locacao.TipoVeiculo.Codigo <= 1)
+                if (value != null)
                 {
-                    switch (typeField)
+                    if (locacao.TipoVeiculo.Codigo <= 1)
                     {
-                        case ValidFields.ValidaPlaca:
-                            {
-                                var placa = locacao.Placa;
-                                var repetido = db.locacoes.Any(x => x.Placa.ToString() == placa);
-                                var codigo = locacao.TipoVeiculo.Codigo;
-
-                                value = placa;
-
-                                if (repetido == false)
+                        switch (typeField)
+                        {
+                            case ValidFields.ValidaPlaca:
                                 {
-                                    bool placaPadrao = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[-][0-9]{4}$");
-                                    bool placaMercosulAutomovel = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[0-9]{1}[a-zA-Z]{1}[0-9]{2}$");
-                                    bool placaMercosulMoto = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[0-9]{2}[a-zA-Z]{1}[0-9]{1}$");
+                                    var placa = locacao.Placa;
+                                    var repetido = db.locacoes.Any(x => x.Placa.ToString() == placa);
+                                    var codigo = locacao.TipoVeiculo.Codigo;
 
-                                    if (codigo == 0 && (placaPadrao || placaMercosulAutomovel))
-                                        return ValidationResult.Success;
+                                    value = placa;
 
-                                    else if (codigo == 1 && (placaPadrao || placaMercosulMoto))
-                                        return ValidationResult.Success;
+                                    if (repetido == false)
+                                    {
+                                        bool placaPadrao = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[-][0-9]{4}$");
+                                        bool placaMercosulAutomovel = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[0-9]{1}[a-zA-Z]{1}[0-9]{2}$");
+                                        bool placaMercosulMoto = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[0-9]{2}[a-zA-Z]{1}[0-9]{1}$");
 
-                                    return new ValidationResult($"A Placa informada não está no formato aceitável.");                                    
+                                        if (codigo == 0 && (placaPadrao || placaMercosulAutomovel))
+                                            return ValidationResult.Success;
+
+                                        else if (codigo == 1 && (placaPadrao || placaMercosulMoto))
+                                            return ValidationResult.Success;
+
+                                        return new ValidationResult($"A Placa informada não está no formato aceitável.");
+                                    }
+
+                                    return new ValidationResult("A placa informada já possui um registro cadastrado.");
                                 }
 
-                                return new ValidationResult("A placa informada já possui um registro cadastrado.");
-                            }
+                            case ValidFields.ValidaColaborador:
+                                {
+                                    var colaborador = locacao.Colaborador.Id;
+                                    var codigo = locacao.TipoVeiculo.Codigo;
+                                    var repetido = db.locacoes.Any(x => x.Colaborador.Id == colaborador);
 
-                        case ValidFields.ValidaColaborador:
-                            {
-                                var colaborador = locacao.Colaborador.Id;
-                                var codigo = locacao.TipoVeiculo.Codigo;
-                                var repetido = db.locacoes.Any(x => x.Colaborador.Id == colaborador);
+                                    if (repetido == false)
+                                        return ValidationResult.Success;
 
-                                if (repetido == false)                                
-                                    return ValidationResult.Success;
-                                                               
-                                return new ValidationResult("O Colaborador informado já possui um registro cadastrado.");
-                            }
+                                    return new ValidationResult("O Colaborador informado já possui um registro cadastrado.");
+                                }
 
-                        case ValidFields.ValidaModeloCor:
-                            {
-                                var cor = locacao.Cor;
-                                var modelo = locacao.Modelo;
+                            case ValidFields.ValidaModeloCor:
+                                {
+                                    var cor = locacao.Cor;
+                                    var modelo = locacao.Modelo;
 
-                                if (modelo != null && cor != null) 
-                                    return ValidationResult.Success;
+                                    if (modelo != null && cor != null)
+                                        return ValidationResult.Success;
 
-                                return new ValidationResult("É necessário informar um Modelo e Cor válidas.");
-                                //return ValidarModeloCor(value, validationContext.DisplayName);
-                            }
-                        case ValidFields.ValidaTermo:
-                            {
-                                if (locacao.AceiteTermo == true)                                
-                                    return ValidationResult.Success;                                
+                                    return new ValidationResult("É necessário informar um Modelo e Cor válidas.");
+                                    //return ValidarModeloCor(value, validationContext.DisplayName);
+                                }
+                            case ValidFields.ValidaTermo:
+                                {
+                                    if (locacao.AceiteTermo == true)
+                                        return ValidationResult.Success;
 
-                                return new ValidationResult($"Para realizar a locação, você deve aceitar os termos de uso.");
-                            }
+                                    return new ValidationResult($"Para realizar a locação, você deve aceitar os termos de uso.");
+                                }
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
                     }
                 }
-            }            
 
-            if ((locacao.Modelo == null || locacao.Placa == null || locacao.Cor == null) && locacao.AceiteTermo == true)
-            {
-                if(locacao.TipoVeiculo.Codigo > 1 && locacao.TipoVeiculo.Codigo < 4)                
-                    return ValidationResult.Success;                
+                if ((locacao.Modelo == null || locacao.Placa == null || locacao.Cor == null) && locacao.AceiteTermo == true)
+                {
+                    if (locacao.TipoVeiculo.Codigo > 1 && locacao.TipoVeiculo.Codigo < 4)
+                        return ValidationResult.Success;
+                }
+
+                return new ValidationResult($"O campo {validationContext.DisplayName} é obrigatório.");
             }
-        
-            return new ValidationResult($"O campo {validationContext.DisplayName} é obrigatório.");
+            return ValidationResult.Success;
         }
         //private ValidationResult ValidarPlaca(object value, string displayField)
         //{
