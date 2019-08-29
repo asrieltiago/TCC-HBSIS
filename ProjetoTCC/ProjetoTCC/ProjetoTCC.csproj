@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201908291300008_one.Designer.cs">
       <DependentUpon>201908291300008_one.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908291803470_terceiro.cs" />
+    <Compile Include="Migrations\201908291803470_terceiro.Designer.cs">
+      <DependentUpon>201908291803470_terceiro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
     <Compile Include="Models\ContextDB.cs" />
@@ -282,6 +286,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201908291300008_one.resx">
       <DependentUpon>201908291300008_one.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908291803470_terceiro.resx">
+      <DependentUpon>201908291803470_terceiro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

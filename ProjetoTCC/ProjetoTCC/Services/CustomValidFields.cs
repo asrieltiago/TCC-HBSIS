@@ -75,11 +75,10 @@ namespace ProjetoTCC.Services
                                     if (codigo == 0 && (placaPadrao || placaMercosulAutomovel))
                                         return ValidationResult.Success;
 
-                                    else if (codigo == 1 && placaPadrao || placaMercosulMoto)
+                                    else if (codigo == 1 && (placaPadrao || placaMercosulMoto))
                                         return ValidationResult.Success;
 
-                                    return new ValidationResult($"A Placa informada não está no formato aceitável.");
-                                    //return ValidarPlaca(value, validationContext.DisplayName);
+                                    return new ValidationResult($"A Placa informada não está no formato aceitável.");                                    
                                 }
 
                                 return new ValidationResult("A placa informada já possui um registro cadastrado.");
@@ -91,19 +90,16 @@ namespace ProjetoTCC.Services
                                 var codigo = locacao.TipoVeiculo.Codigo;
                                 var repetido = db.locacoes.Any(x => x.Colaborador.Id == colaborador);
 
-                                //Locacao colaborador = db.locacoes.FirstOrDefault(x => x.Colaborador.ToString() == value.ToString());
-                                if (repetido == false)
-                                {
+                                if (repetido == false)                                
                                     return ValidationResult.Success;
-                                    //return ValidarColaborador(value, validationContext.DisplayName);
-                                }                                
+                                                               
                                 return new ValidationResult("O Colaborador informado já possui um registro cadastrado.");
                             }
 
                         case ValidFields.ValidaModeloCor:
                             {
-                                var cor = locacao.Cor.Id;
-                                var modelo = locacao.Modelo.Id;
+                                var cor = locacao.Cor;
+                                var modelo = locacao.Modelo;
 
                                 if (modelo != null && cor != null) 
                                     return ValidationResult.Success;
@@ -113,10 +109,8 @@ namespace ProjetoTCC.Services
                             }
                         case ValidFields.ValidaTermo:
                             {
-                                if (locacao.AceiteTermo == true)
-                                {
-                                    return ValidationResult.Success;
-                                }
+                                if (locacao.AceiteTermo == true)                                
+                                    return ValidationResult.Success;                                
 
                                 return new ValidationResult($"Para realizar a locação, você deve aceitar os termos de uso.");
                             }
@@ -125,7 +119,14 @@ namespace ProjetoTCC.Services
                             break;
                     }
                 }
+            }            
+
+            if (locacao.Modelo == null || locacao.Placa == null || locacao.Cor == null || locacao.AceiteTermo == true)
+            {
+                if(locacao.TipoVeiculo.Codigo > 1 && locacao.TipoVeiculo.Codigo < 4)                
+                    return ValidationResult.Success;                
             }
+        
             return new ValidationResult($"O campo {validationContext.DisplayName} é obrigatório.");
         }
         //private ValidationResult ValidarPlaca(object value, string displayField)
