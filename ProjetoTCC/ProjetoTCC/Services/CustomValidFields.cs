@@ -121,7 +121,7 @@ namespace ProjetoTCC.Services
                 }
             }            
 
-            if (locacao.Modelo == null || locacao.Placa == null || locacao.Cor == null || locacao.AceiteTermo == true)
+            if ((locacao.Modelo == null || locacao.Placa == null || locacao.Cor == null) && locacao.AceiteTermo == true)
             {
                 if(locacao.TipoVeiculo.Codigo > 1 && locacao.TipoVeiculo.Codigo < 4)                
                     return ValidationResult.Success;                
@@ -190,25 +190,3 @@ namespace ProjetoTCC.Services
 
 
 
-//[ResponseType(typeof(Locacao))]
-//[AcceptVerbs("PATCH")]
-//[Route("api/Locacoes/{codLocacao}/{idStatus}")]
-//public IHttpActionResult AprovaLocacao(int codLocacao, int idStatus)
-//{
-//    Locacao locacao = db.Locacoes.Find(codLocacao);
-//    if (locacao == null)
-//    {
-//        return NotFound();
-//    }
-//    switch (idStatus)
-//    {
-//        case 1: locacao.Situacao = Status.VINGENTE; break;
-//        case 3: locacao.Situacao = Status.FILA_DE_ESPERA; break;
-//    };
-//
-//    // locacao.Situacao = Status.FILA_DE_ESPERA;
-//
-//    db.SaveChanges();
-//
-//    return Ok(locacao);
-//}

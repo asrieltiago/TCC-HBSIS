@@ -109,10 +109,6 @@ namespace ProjetoTCC.Controllers
                 locacao.TermoLocacao = termo;
                 locacao.TipoVeiculo = tipo;
             }
-            //if (tipo == null || modelo == null || colaborador == null || periodo == null || cor == null || termo == null)
-            //    return BadRequest("Existem campos inválidos em branco, favor verificar.");
-
-            
 
             db.locacoes.Add(locacao);
             await db.SaveChangesAsync();

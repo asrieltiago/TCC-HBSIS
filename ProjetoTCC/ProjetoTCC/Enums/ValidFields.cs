@@ -8,7 +8,6 @@ namespace ProjetoTCC.Enums
     public enum ValidFields
     {
         ValidaTermo,
-        ValidaCodigo,
         ValidaPlaca,
         ValidaModeloCor,
         ValidaColaborador

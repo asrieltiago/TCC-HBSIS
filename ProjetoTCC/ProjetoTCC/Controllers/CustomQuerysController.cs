@@ -1,9 +1,11 @@
-﻿using SistemaLocacaoHBSIS.Models;
+﻿using SistemaLocacaoHBSIS.Enums;
+using SistemaLocacaoHBSIS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace ProjetoTCC.Controllers
 {
@@ -30,6 +32,30 @@ namespace ProjetoTCC.Controllers
         public IQueryable<Periodo> GetPeriodosPorMarcaVigentes(int id)
         {
             return db.periodos.Where(x => x.TipoVeiculo.Codigo == id && DateTime.Now <= x.DataFinal);
+        }
+
+
+        [ResponseType(typeof(Locacao))]
+        [AcceptVerbs("PATCH")]
+        [Route("api/Locacoes/{codLocacao}/{idStatus}")]
+        public IHttpActionResult AprovaLocacao(int codLocacao, int idStatus)
+        {
+            Locacao locacao = db.locacoes.Find(codLocacao);
+            if (locacao == null)
+            {
+                return NotFound();
+            }
+            switch (idStatus)
+            {
+                case 1: locacao.Status = StatusLocacao.VIGENTE; break;
+                case 3: locacao.Status = StatusLocacao.FILA_DE_ESPERA; break;
+            };
+        
+            // locacao.Situacao = Status.FILA_DE_ESPERA;
+        
+            db.SaveChanges();
+        
+            return Ok(locacao);
         }
     }
 }
