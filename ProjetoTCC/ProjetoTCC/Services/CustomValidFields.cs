@@ -14,13 +14,11 @@ namespace ProjetoTCC.Services
     {
         ContextDB dB = new ContextDB();
 
-        private ValidFields typeField;
-        private StatusLocacao statusField;
+        private ValidFields typeField;        
 
-        public CustomValidFields(StatusLocacao status, ValidFields type)
+        public CustomValidFields(ValidFields type)
         {
-            typeField = type;
-            statusField = status;
+            typeField = type;            
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -35,7 +33,22 @@ namespace ProjetoTCC.Services
                     {
                         case ValidFields.ValidaPlaca:
                             {
-                                return ValidarPlaca(value, validationContext.DisplayName);
+                                Locacao locacao = dB.locacoes.FirstOrDefault(x => x.Placa.ToString() == value.ToString());
+
+                                if (locacao == null)
+                                    return ValidarPlaca(value, validationContext.DisplayName);
+
+                                return new ValidationResult("A placa informada já possui um registro cadastrado.");
+                            }
+
+                        case ValidFields.ValidaColaborador:
+                            {
+                                Locacao locacao = dB.locacoes.FirstOrDefault(x => x.Colaborador.ToString() == value.ToString());
+
+                                if (locacao == null)
+                                    return ValidarColaborador(value, validationContext.DisplayName);
+
+                                return new ValidationResult("O Colaborador informado já possui um registro cadastrado.");
                             }
 
                         case ValidFields.ValidaModeloCor:
@@ -43,10 +56,9 @@ namespace ProjetoTCC.Services
                                 return ValidarModeloCor(value, validationContext.DisplayName);
                             }
                         case ValidFields.ValidaTermo:
-                        {
+                            {
                                 return ValidarTermo(value, validationContext.DisplayName);
-                        }
-
+                            }
 
                         default:
                             break;
@@ -76,7 +88,7 @@ namespace ProjetoTCC.Services
             else if (codigo == 1 && placaPadrao || placaMercosulMoto)
                 return ValidationResult.Success;
 
-            return new ValidationResult($"A Placa informada é inválida para o Tipo de Veículo informado.");
+            return new ValidationResult($"A placa informada não está no formato aceitável.");
         }
 
         private ValidationResult ValidarModeloCor(object value, string displayField)
@@ -95,11 +107,22 @@ namespace ProjetoTCC.Services
             var termo = dB.locacoes.Find().AceiteTermo;
 
             if(termo == true)
-            {
+            {                
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult($"O Termo de Uso precisa ser aceito para continuar.");
+            return new ValidationResult($"Para realizar a locação, você deve aceitar os termos de uso.");
+        }
+
+        private ValidationResult ValidarColaborador(object value, string displayField)
+        {
+            var colaborador = dB.locacoes.Find().Colaborador;
+
+            if(colaborador != null)
+            {
+                return ValidationResult.Success;
+            }
+            return new ValidationResult($"O Campo {displayField} precisa ser preenchido.");
         }
     }
 }

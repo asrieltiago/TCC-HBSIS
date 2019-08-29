@@ -17,10 +17,10 @@ namespace ProjetoTCC.Migrations
         protected override void Seed(ContextDB context)
         {
             var TipoVeiculos = new List<TipoVeiculo>() {
-                new TipoVeiculo(){Codigo = 0,Descricao = "Automóvel", Valor = 150},
-                new TipoVeiculo(){Codigo = 1,Descricao = "Moto", Valor = 75},
-                new TipoVeiculo(){Codigo = 2,Descricao = "Bicicleta", Valor = 0},
-                new TipoVeiculo(){Codigo = 3,Descricao = "Patinete", Valor = 0},
+                new TipoVeiculo(){Codigo = 0,Descricao = "Automóvel"},
+                new TipoVeiculo(){Codigo = 1,Descricao = "Moto"},
+                new TipoVeiculo(){Codigo = 2,Descricao = "Bicicleta"},
+                new TipoVeiculo(){Codigo = 3,Descricao = "Patinete"},
                 };
 
             TipoVeiculos.ForEach(s => context.tipoVeiculos.AddOrUpdate(p => p.Descricao, s));

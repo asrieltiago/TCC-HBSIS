@@ -9,6 +9,7 @@ namespace ProjetoTCC.Enums
     {
         ValidaTermo,
         ValidaPlaca,
-        ValidaModeloCor
+        ValidaModeloCor,
+        ValidaColaborador
     }
 }
