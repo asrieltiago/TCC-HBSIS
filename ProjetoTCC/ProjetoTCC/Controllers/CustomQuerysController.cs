@@ -37,38 +37,35 @@ namespace ProjetoTCC.Controllers
         }
 
         [ResponseType(typeof(Locacao))]
-        [AcceptVerbs("PUT")]
+        [AcceptVerbs("PATCH")]
         [Route("api/Locacoes/{idStatus}")]
         public IHttpActionResult AprovaTodasLocacao(int idStatus)
         {
             Locacao locacao = db.locacoes.Find(idStatus);
-            if (locacao == null)
-            {
-                return NotFound();
-            }
-                        
-            var status = locacao.Status.ToString();
+            var lista = db.locacoes.Where(x => x.Status == StatusLocacao.EM_APROVACAO).ToList();            
 
-            //db.locacoes.Where(x => x.Status == StatusLocacao.VIGENTE);
-
-            switch (idStatus)
+            foreach (var item in lista)
             {
-                case 1:
-                    {
-                        for (int i = 0; i < status.ToString().Length; i++)
+                switch (idStatus)
+                {
+                    case 1:
                         {
-                            locacao.Status = StatusLocacao.VIGENTE;
-                            //Enviar(locacao.Colaborador.Email);                            
+                            item.Status = StatusLocacao.VIGENTE;
+                            //Enviar(locacao.Colaborador.Email);
                         }
-                    }
-                    break;
-                case 3:
-                    locacao.Status = StatusLocacao.FILA_DE_ESPERA; break;
+                        break;
+                    case 3:
+                        {
+                            item.Status = StatusLocacao.FILA_DE_ESPERA;
+                            //Enviar(locacao.Colaborador.Email);
+                        }
+                        break;
+                }
             };
 
             db.SaveChanges();
-            
-            return Ok(locacao);
+
+            return Ok("Todos os itens com Status: FILA DE ESPERA foram alterados para VIGENTE.");
         }
 
         [ResponseType(typeof(Locacao))]
@@ -87,7 +84,6 @@ namespace ProjetoTCC.Controllers
                     {
                         locacao.Status = StatusLocacao.VIGENTE;
                         Enviar(locacao.Colaborador.Email);
-
                     }
                     break;
                 case 3:
@@ -135,8 +131,7 @@ namespace ProjetoTCC.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("The email was not sent.");
-                    Console.WriteLine("Error message: " + ex.Message);
+                    throw;
                 }
             }
         }
