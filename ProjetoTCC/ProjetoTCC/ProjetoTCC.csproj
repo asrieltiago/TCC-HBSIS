@@ -189,9 +189,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908292359154_first.cs" />
-    <Compile Include="Migrations\201908292359154_first.Designer.cs">
-      <DependentUpon>201908292359154_first.cs</DependentUpon>
+    <Compile Include="Migrations\201908301642472_noturno.cs" />
+    <Compile Include="Migrations\201908301642472_noturno.Designer.cs">
+      <DependentUpon>201908301642472_noturno.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
@@ -292,8 +292,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908292359154_first.resx">
-      <DependentUpon>201908292359154_first.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908301642472_noturno.resx">
+      <DependentUpon>201908301642472_noturno.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

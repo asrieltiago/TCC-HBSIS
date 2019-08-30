@@ -15,6 +15,7 @@ namespace ProjetoTCC.Controllers
     {
         private ContextDB db = new ContextDB();
 
+        #region CustomQuerysFinalizadas
         [Route("Api/Marcas/{id}/Tipo")]
         [HttpGet]
         public IQueryable<Marca> GetMarcaPorTipo(int id)
@@ -38,70 +39,12 @@ namespace ProjetoTCC.Controllers
 
         [ResponseType(typeof(Locacao))]
         [AcceptVerbs("PATCH")]
-        [Route("api/Locacoes/{idStatus}/{idPeriodo}/AtualizarTodos")]
-        public IHttpActionResult AprovaTodasLocacao(int idStatus, int idPeriodo)
-        {
-
-            Locacao locacao = db.locacoes.Find(idStatus);
-            Periodo periodo = db.periodos.Find(idPeriodo);
-
-            var listaEmAprovacao = db.locacoes.Where(x => x.Status == StatusLocacao.EM_APROVACAO).Where(x => x.Periodo.Id == idPeriodo).ToList();
-            var vagasVigente = db.locacoes.Where(x => x.Status == StatusLocacao.VIGENTE).Where(x => x.Periodo.Id == idPeriodo).Count();
-            var vagasDisponiveis = periodo.Vagas;
-
-            vagasDisponiveis -= vagasVigente;
-
-            if (locacao == null || periodo == null)
-                return NotFound();
-
-            foreach (var item in listaEmAprovacao)
-            {
-                switch (idStatus)
-                {
-                    case 1:
-                        {
-                            if (vagasDisponiveis == 0)
-                            {
-                                item.Status = StatusLocacao.FILA_DE_ESPERA;
-                                break;
-                            }
-
-                            else
-                            {
-                                item.Status = StatusLocacao.VIGENTE;
-                                vagasDisponiveis--;
-                                //Enviar(locacao.Colaborador.Email);
-                            }
-                        }
-                        break;
-                    case 3:
-                        {
-                            if (vagasDisponiveis > 0)
-                            {
-                                item.Status = StatusLocacao.VIGENTE;
-                                vagasDisponiveis--;
-                                //Enviar(locacao.Colaborador.Email);
-                            }                                             
-                        }
-                        break;
-                }
-            };
-
-            periodo.Vagas = vagasDisponiveis;
-            db.SaveChanges();
-
-            return Ok("Todos os itens com Status: FILA DE ESPERA foram alterados para VIGENTE.");
-        }
-
-
-        [ResponseType(typeof(Locacao))]
-        [AcceptVerbs("PATCH")]
         [Route("api/Locacoes/{idStatus}/AtualizarTodos")]
         public IHttpActionResult AprovaTodasLocacao(int idStatus)
         {
-            Locacao locacao = db.locacoes.Find(idStatus);            
+            Locacao locacao = db.locacoes.Find(idStatus);
             var listaEmAprovacao = db.locacoes.Where(x => x.Status == StatusLocacao.EM_APROVACAO).ToList();
-            var listaVigente = db.locacoes.Where(x => x.Status == StatusLocacao.VIGENTE).ToList();            
+            var listaVigente = db.locacoes.Where(x => x.Status == StatusLocacao.VIGENTE).ToList();
 
             foreach (var item in listaEmAprovacao)
             {
@@ -142,7 +85,7 @@ namespace ProjetoTCC.Controllers
                 case 1:
                     {
                         locacao.Status = StatusLocacao.VIGENTE;
-                        Enviar(locacao.Colaborador.Email);
+                        //Enviar(locacao.Colaborador.Email);
                     }
                     break;
                 case 3:
@@ -195,5 +138,175 @@ namespace ProjetoTCC.Controllers
             }
         }
 
+        //[ResponseType(typeof(Locacao))]
+        //[AcceptVerbs("PATCH")]
+        //[Route("api/Locacoes/{idStatus}/{idPeriodo}/AtualizarTodosNoturno")]
+        //public IHttpActionResult AprovaTodasLocacao(int idStatus, int idPeriodo)
+        //{
+        //    Locacao locacao = db.locacoes.Find(idStatus);
+        //    Periodo periodo = db.periodos.Find(idPeriodo);
+        //
+        //    var listaEmAprovacao = db.locacoes.Where(x => x.Status == StatusLocacao.EM_APROVACAO).Where(x => x.Periodo.Id == idPeriodo).ToList();
+        //    var vagasVigente = db.locacoes.Where(x => x.Status == StatusLocacao.VIGENTE).Where(x => x.Periodo.Id == idPeriodo).Count();
+        //    var vagasDisponiveis = periodo.Vagas;
+        //
+        //    vagasDisponiveis -= vagasVigente;
+        //
+        //    if (locacao == null || periodo == null)
+        //        return NotFound();
+        //
+        //    foreach (var item in listaEmAprovacao)
+        //    {
+        //        switch (idStatus)
+        //        {
+        //            case 1:
+        //                {
+        //                    if (vagasDisponiveis == 0)
+        //                    {
+        //                        item.Status = StatusLocacao.FILA_DE_ESPERA;
+        //                        break;
+        //                    }
+        //
+        //                    else
+        //                    {
+        //                        item.Status = StatusLocacao.VIGENTE;
+        //                        vagasDisponiveis--;
+        //                        //Enviar(locacao.Colaborador.Email);
+        //                    }
+        //                }
+        //                break;
+        //            case 3:
+        //                {
+        //                    if (vagasDisponiveis > 0)
+        //                    {
+        //                        item.Status = StatusLocacao.VIGENTE;
+        //                        vagasDisponiveis--;
+        //                        //Enviar(locacao.Colaborador.Email);
+        //                    }
+        //                }
+        //                break;
+        //        }
+        //    };
+        //
+        //    periodo.Vagas = vagasDisponiveis;
+        //    db.SaveChanges();
+        //
+        //    return Ok("Todos os itens com Status: FILA DE ESPERA foram alterados para VIGENTE.");
+        //}
+        #endregion
+
+        [ResponseType(typeof(Locacao))]
+        [AcceptVerbs("PATCH")]
+        [Route("api/Locacoes/{idStatus}/{idPeriodo}/{idColaborador}/AtualizarNoturnoId")]
+        public IHttpActionResult AprovaLocacaoNoturnoId(int idStatus, int idPeriodo, int idColaborador)
+        {
+            Locacao locacao = db.locacoes.Find(idColaborador);
+            Periodo periodo = db.periodos.Find(idPeriodo);
+            Colaborador colaborador = db.colaboradores.Find(idColaborador);
+            var noturno = colaborador.TrabalhoNoturno;
+            //var listaEmAprovacao = db.locacoes.Where(x => x.Status == StatusLocacao.EM_APROVACAO).Where(x => x.Periodo.Id == idPeriodo).Where(x => x.Colaborador.TrabalhoNoturno == noturno).Where(x => x.Periodo.Noturno == true).ToList();
+            var vagasDisponiveis = periodo.Vagas;
+            var vagasVigente = db.locacoes.Where(x => x.Status == StatusLocacao.VIGENTE).Where(x => x.Periodo.Id == idPeriodo).Where(x => x.Colaborador.TrabalhoNoturno == noturno).Where(x => x.Periodo.Noturno == true).Count();
+                       
+            vagasDisponiveis -= vagasVigente;
+
+            if (locacao == null || periodo == null || colaborador == null)
+                return NotFound();
+
+            switch (idStatus)
+            {
+                case 1:
+                    {
+                        if (vagasDisponiveis == 0)
+                        {
+                            locacao.Status = StatusLocacao.FILA_DE_ESPERA;
+                            break;
+                        }
+
+                        else
+                        {
+                            locacao.Status = StatusLocacao.VIGENTE;
+                            vagasDisponiveis--;
+                            //Enviar(locacao.Colaborador.Email);
+                        }
+                    }
+                    break;
+                case 3:
+                    {
+                        if (vagasDisponiveis > 0)
+                        {
+                            locacao.Status = StatusLocacao.VIGENTE;
+                            vagasDisponiveis--;
+                            //Enviar(locacao.Colaborador.Email);
+                        }
+                    }
+                    break;
+            };
+
+            periodo.Vagas = vagasDisponiveis;
+            db.SaveChanges();
+
+            return Ok("Todos os itens com Status: FILA DE ESPERA foram alterados para VIGENTE.");
+        }
+
+        [ResponseType(typeof(Locacao))]
+        [AcceptVerbs("PATCH")]
+        [Route("api/Locacoes/{idStatus}/{idPeriodo}/AtualizarTodosNoturno")]
+        public IHttpActionResult AprovaTodasLocacaoNoturno(int idStatus, int idPeriodo)
+        {
+            Locacao locacao = db.locacoes.Find(idStatus);
+            Periodo periodo = db.periodos.Find(idPeriodo);
+            //Colaborador colaborador = new Colaborador();
+
+            var noturno = locacao.Colaborador.TrabalhoNoturno;
+            noturno = true;
+
+            var listaEmAprovacao = db.locacoes
+                .Where(x => x.Status == StatusLocacao.EM_APROVACAO)
+                .Where(x => x.Periodo.Id == idPeriodo)
+                .Where(x => x.Colaborador.TrabalhoNoturno == noturno)
+                .Where(x => x.Periodo.Noturno == true).ToList();
+
+            var vagasVigente = db.locacoes
+                .Where(x => x.Status == StatusLocacao.VIGENTE)
+                .Where(x => x.Periodo.Id == idPeriodo)
+                .Where(x => x.Colaborador.TrabalhoNoturno == noturno)
+                .Where(x => x.Periodo.Noturno == true).Count();
+
+            var vagasDisponiveis = periodo.Vagas;
+
+            vagasDisponiveis -= vagasVigente;
+
+            if (locacao == null || periodo == null)
+                return NotFound();
+
+            foreach (var item in listaEmAprovacao)
+            {
+                if (noturno == true)
+                {
+                    switch (idStatus)
+                    {
+                        case 1:
+                            {
+
+                                item.Status = StatusLocacao.VIGENTE;
+                                //Enviar(locacao.Colaborador.Email);
+                            }
+                            break;
+                        case 3:
+                            {
+                                item.Status = StatusLocacao.FILA_DE_ESPERA;
+                                //Enviar(locacao.Colaborador.Email);
+                            }
+                            break;
+                    }
+                }
+            };
+
+            periodo.Vagas = vagasDisponiveis;
+            db.SaveChanges();
+
+            return Ok("Todos os itens com Status: FILA DE ESPERA foram alterados para VIGENTE.");
+        }
     }
 }

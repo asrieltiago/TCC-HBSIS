@@ -81,7 +81,7 @@ namespace ProjetoTCC.Services
 
                                         return new ValidationResult($"A Placa informada não está no formato aceitável.");
                                     }
-
+                                    
                                     return new ValidationResult("A placa informada já possui um registro cadastrado.");
                                 }
 
@@ -131,62 +131,7 @@ namespace ProjetoTCC.Services
                 return new ValidationResult($"O campo {validationContext.DisplayName} é obrigatório.");
             }
             return ValidationResult.Success;
-        }
-        //private ValidationResult ValidarPlaca(object value, string displayField)
-        //{
-        //    Locacao locacao = new Locacao;
-        //
-        //    var codigo = db.locacoes.FirstOrDefault(x => x.TipoVeiculo.Codigo == (int)value);
-        //    var placa = db.locacoes.FirstOrDefault(x => x.Placa == value.ToString());
-        //
-        //    bool placaPadrao = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[-][0-9]{4}$");
-        //    bool placaMercosulAutomovel = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[0-9]{1}[a-zA-Z]{1}[0-9]{2}$");
-        //    bool placaMercosulMoto = Regex.IsMatch(value.ToString(), @"^[a-zA-Z]{3}[0-9]{2}[a-zA-Z]{1}[0-9]{1}$");
-        //
-        //
-        //    if (codigo.TipoVeiculo.Codigo == 0)
-        //        //if (placa && placaPadrao || placaMercosulAutomovel)
-        //        return ValidationResult.Success;
-        //
-        //    else if (codigo.TipoVeiculo.Codigo == 1 && placaPadrao || placaMercosulMoto)
-        //        return ValidationResult.Success;
-        //
-        //    return new ValidationResult($"A {displayField} informada não está no formato aceitável.");
-        //}
-
-        //private ValidationResult ValidarModeloCor(object value, string displayField)
-        //{
-        //    var modelo = db.modelos.FirstOrDefault(x => x.Id == (int)value);
-        //    var cor = db.tipoCores.FirstOrDefault(x => x.Id == (int)value);
-        //
-        //    if (cor != null && modelo != null)
-        //        return ValidationResult.Success;
-        //
-        //    return new ValidationResult($"O Campo {displayField} precisa ser preenchido.");
-        //}
-
-        //private ValidationResult ValidarTermo(object value, string displayField)
-        //{
-        //    var termo = db.termoLocacoes.FirstOrDefault(x => x.Id == (int)value);
-        //
-        //    if (termo.Ativo == true)
-        //    {
-        //        return ValidationResult.Success;
-        //    }
-        //
-        //    return new ValidationResult($"Para realizar a locação, você deve aceitar os termos de uso.");
-        //}
-
-        //private ValidationResult ValidarColaborador(object value, string displayField)
-        //{
-        //    var colaborador = db.colaboradores.FirstOrDefault(x => x.Id == (int)value);
-        //
-        //    if (colaborador != null)
-        //    {
-        //        return ValidationResult.Success;
-        //    }
-        //    return new ValidationResult($"O Campo {displayField} precisa ser preenchido.");
-        //}
+        }       
     }
 }
 
