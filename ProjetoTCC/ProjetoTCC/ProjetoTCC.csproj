@@ -52,14 +52,26 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Workflow.Activities" />
+    <Reference Include="System.Workflow.ComponentModel" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -177,13 +189,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908291300008_one.cs" />
-    <Compile Include="Migrations\201908291300008_one.Designer.cs">
-      <DependentUpon>201908291300008_one.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908291803470_terceiro.cs" />
-    <Compile Include="Migrations\201908291803470_terceiro.Designer.cs">
-      <DependentUpon>201908291803470_terceiro.cs</DependentUpon>
+    <Compile Include="Migrations\201908292359154_first.cs" />
+    <Compile Include="Migrations\201908292359154_first.Designer.cs">
+      <DependentUpon>201908292359154_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Colaborador.cs" />
@@ -284,11 +292,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908291300008_one.resx">
-      <DependentUpon>201908291300008_one.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908291803470_terceiro.resx">
-      <DependentUpon>201908291803470_terceiro.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908292359154_first.resx">
+      <DependentUpon>201908292359154_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
